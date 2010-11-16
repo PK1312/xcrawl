@@ -1,4 +1,4 @@
-World do
+Before do
   @player = Player.new
   @player.location = [5, 5]
 end
@@ -18,9 +18,9 @@ Given /^there is a room to the north$/ do
 end
 
 When /^I move north$/ do  
-  @player.location[0] += 10
+  @player.move_north
 end
 
 Then /^I should be in that room$/ do
-  @new_room.contains?(@player).should be_true
+  @new_room.include?(@player).should be_true
 end
