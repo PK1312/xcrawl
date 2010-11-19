@@ -1,0 +1,44 @@
+require 'xcrawl'
+
+puts 'WELCOME TO XCRAWL!'
+
+map = Map.new
+
+a_room = Room.new(10, 10)
+map.add_room(a_room, 0, 0)
+
+a_room = Room.new(10, 10)
+map.add_room(a_room, 0, 10)
+
+a_room = Room.new(10, 10)
+map.add_room(a_room, 10, 0)
+
+a_room = Room.new(10, 10)
+map.add_room(a_room, 10, 10)
+
+player = Player.new
+
+loop do
+  room_to_north = map.room_at?(player.location[0], player.location[1] + player.speed)
+  room_to_south = map.room_at?(player.location[0], player.location[1] - player.speed)
+  room_to_east = map.room_at?(player.location[0] + player.speed, player.location[1])
+  room_to_west = map.room_at?(player.location[0] - player.speed, player.location[1])
+  
+  puts "North: #{room_to_north ? "yes" : "no"}"
+  puts "South: #{room_to_south ? "yes" : "no"}"
+  puts "East: #{room_to_east ? "yes" : "no"}"
+  puts "West: #{room_to_west ? "yes" : "no"}"
+  
+  print "[N/S/E/W] "
+  direction = gets[0]
+  case direction.downcase
+  when "n"
+    player.move_north!
+  when "s"
+    player.move_south!
+  when "e"
+    player.move_east!
+  when "w"
+    player.move_west!
+  end
+end
