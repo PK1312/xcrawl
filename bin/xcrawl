@@ -1,4 +1,7 @@
+#!/usr/bin/env ruby
+
 require 'xcrawl'
+include XCrawl
 
 puts 'WELCOME TO XCRAWL!'
 
@@ -19,18 +22,29 @@ map.add_room(a_room, 10, 10)
 player = Player.new
 
 loop do
-  room_to_north = map.room_at?(player.location[0], player.location[1] + player.speed)
-  room_to_south = map.room_at?(player.location[0], player.location[1] - player.speed)
-  room_to_east = map.room_at?(player.location[0] + player.speed, player.location[1])
-  room_to_west = map.room_at?(player.location[0] - player.speed, player.location[1])
+  p player
   
-  puts "North: #{room_to_north ? "yes" : "no"}"
-  puts "South: #{room_to_south ? "yes" : "no"}"
-  puts "East: #{room_to_east ? "yes" : "no"}"
-  puts "West: #{room_to_west ? "yes" : "no"}"
+  room_to_north = map.room_at?(player.x_location, player.y_location + player.speed)
+  room_to_south = map.room_at?(player.x_location, player.y_location - player.speed)
+  room_to_east = map.room_at?(player.x_location + player.speed, player.y_location)
+  room_to_west = map.room_at?(player.x_location - player.speed, player.y_location)
   
-  print "[N/S/E/W] "
+  directions = []  
+  directions << 'N' if room_to_north
+  directions << 'S' if room_to_north
+  directions << 'W' if room_to_west
+  directions << 'E' if room_to_east  
+  
+  print "[#{directions.join("/")}] "
   direction = gets[0]
+  
+  unless directions.include?(direction.upcase)
+    puts 'You cannot go that way.'
+    next
+  end
+  
+  puts "You enter a new room."
+  
   case direction.downcase
   when "n"
     player.move_north!

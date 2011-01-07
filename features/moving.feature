@@ -1,6 +1,6 @@
 Feature: Moving
   In order to play the game
-  As a player
+  As a creature
   I want to move around
   
   Scenario: Move north

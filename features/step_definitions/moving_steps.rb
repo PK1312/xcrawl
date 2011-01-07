@@ -13,22 +13,23 @@ end
 
 Given /^there is a room to the north$/ do
   @new_room = Room.new(10, 10)
-  @map.add_room(@new_room, 10, 0)
+  @map.add_room(@new_room, 0, 10)
 end
+
 
 Given /^there is a room to the south$/ do
   @new_room = Room.new(10, 10)
-  @map.add_room(@new_room, -10, 0)
+  @map.add_room(@new_room, 0, -10)
 end
 
 Given /^there is a room to the east$/ do
   @new_room = Room.new(10, 10)
-  @map.add_room(@new_room, 0, 10)
+  @map.add_room(@new_room, 10, 0)
 end
 
 Given /^there is a room to the west$/ do
   @new_room = Room.new(10, 10)
-  @map.add_room(@new_room, 0, -10)
+  @map.add_room(@new_room, -10, 0)
 end
 
 When /^I move north$/ do  
