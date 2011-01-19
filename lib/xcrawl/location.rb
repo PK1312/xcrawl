@@ -9,10 +9,12 @@ module XCrawl
     end
     
     def x_location=(new_x)
+      @location ||= []
       @location[0] = new_x
     end
     
     def y_location
+      @location ||= []
       @location[1]
     end
     

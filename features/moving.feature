@@ -30,3 +30,10 @@ Feature: Moving
     And there is a room to the west
     When I move west
     Then I should be in that room
+    
+  Scenario: Move into the void
+    Given there is a map
+    And I am in a room
+    And there is no room to the south
+    When I move south
+    Then I should not move

@@ -5,7 +5,8 @@ module XCrawl
     end
     
     def add_room(room, x, y)
-      room.location = [x, y]
+      room.x_location = x
+      room.y_location = y
       @roomlist << [room, x, y]
     end
     
